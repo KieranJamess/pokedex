@@ -8,7 +8,7 @@ import (
 // commandHelp displays the help message.
 func commandExplore(commands map[string]cliCommand, cfg *config, args ...string) error {
 	if len(args) != 1 {
-		return errors.New("Usage: explore <location>")
+		return errors.New("usage: explore <location>")
 	}
 
 	areaName := args[0]
