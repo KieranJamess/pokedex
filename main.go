@@ -13,7 +13,7 @@ import (
 type cliCommand struct {
 	name        string
 	description string
-	callback    func(commands map[string]cliCommand, cfg *config) error
+	callback    func(commands map[string]cliCommand, cfg *config, args ...string) error
 }
 
 type config struct {
@@ -48,6 +48,11 @@ func main() {
 			description: "Get the previous 20 locations. You can keep using this unless you're on the first page.",
 			callback:    commandMapback,
 		},
+		"explore": {
+			name:        "explore",
+			description: "Explore a specific area for pokemon found in it. Type 'map' to get a list of areas to explore.",
+			callback:    commandExplore,
+		},
 	}
 
 	scanner := bufio.NewScanner(os.Stdin)
@@ -58,8 +63,10 @@ func main() {
 		fmt.Print("Pokedex > ")
 		if scanner.Scan() {
 			input := strings.TrimSpace(scanner.Text())
-			if cmd, exists := commands[input]; exists {
-				if err := cmd.callback(commands, cfg); err != nil {
+			parts := strings.Fields(input)
+			commandName, args := parts[0], parts[1:]
+			if cmd, exists := commands[commandName]; exists {
+				if err := cmd.callback(commands, cfg, args...); err != nil {
 					fmt.Printf("Error executing command: %v\n", err)
 				}
 			} else {

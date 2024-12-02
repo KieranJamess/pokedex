@@ -5,7 +5,10 @@ import (
 )
 
 // commandHelp displays the help message.
-func commandMap(commands map[string]cliCommand, cfg *config) error {
+func commandMap(commands map[string]cliCommand, cfg *config, args ...string) error {
+	if len(args) != 0 {
+		return fmt.Errorf("map doesn't accept any arguments")
+	}
 	res, err := cfg.pokeapiClient.ListLocationAreas(cfg.nextLocationAreaURL)
 	if err != nil {
 		return err
@@ -23,7 +26,10 @@ func commandMap(commands map[string]cliCommand, cfg *config) error {
 }
 
 // commandHelp displays the help message.
-func commandMapback(commands map[string]cliCommand, cfg *config) error {
+func commandMapback(commands map[string]cliCommand, cfg *config, args ...string) error {
+	if len(args) != 0 {
+		return fmt.Errorf("mapback doesn't accept any arguments")
+	}
 	if cfg.previousLocationAreaURL == nil {
 		return fmt.Errorf("no previous location area (you're on the first page!)")
 	}
