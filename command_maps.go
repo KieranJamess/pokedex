@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-// commandHelp displays the help message.
+// commandMap shows the first 20 map entries. Keep using to iterate through.
 func commandMap(commands map[string]cliCommand, cfg *config, args ...string) error {
 	if len(args) != 0 {
 		return fmt.Errorf("map doesn't accept any arguments")
@@ -25,7 +25,7 @@ func commandMap(commands map[string]cliCommand, cfg *config, args ...string) err
 	return nil
 }
 
-// commandHelp displays the help message.
+// commandMapback Move back a page from the maps.
 func commandMapback(commands map[string]cliCommand, cfg *config, args ...string) error {
 	if len(args) != 0 {
 		return fmt.Errorf("mapback doesn't accept any arguments")

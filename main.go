@@ -32,12 +32,12 @@ func main() {
 	commands := map[string]cliCommand{
 		"help": {
 			name:        "help",
-			description: "Displays a help message",
+			description: "Displays a help message.",
 			callback:    commandHelp,
 		},
 		"exit": {
 			name:        "exit",
-			description: "Exit the application",
+			description: "Exit the application.",
 			callback:    commandExit,
 		},
 		"map": {
@@ -59,6 +59,16 @@ func main() {
 			name:        "catch",
 			description: "Catch a pokemon. Type 'map' to get a list of areas, and use 'explore' to explore them.",
 			callback:    commandCatch,
+		},
+		"inspect": {
+			name:        "inspect",
+			description: "Inspect a caught Pokemon.",
+			callback:    commandInspect,
+		},
+		"caught-pokemon": {
+			name:        "caught-pokemon",
+			description: "List of all your caught Pokemon.",
+			callback:    commandCaughtPokemon,
 		},
 	}
 
